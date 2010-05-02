@@ -1,8 +1,14 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import NoReverseMatch, reverse
-from django.utils.copycompat import deepcopy, copy
 from tastypie.exceptions import HydrationError
 from tastypie.fields import ApiField, CharField, RelatedField
+
+# copy was added in Python 2.5 and copycompat was added in
+# post 1.1.1 Django (r11901)
+try:
+    from django.utils.copycompat import deepcopy, copy
+except ImportError:
+    from copy import deepcopy, copy
 
 
 class DeclarativeMetaclass(type):

@@ -1,10 +1,16 @@
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist, MultipleObjectsReturned
 from django.core.urlresolvers import reverse, resolve, NoReverseMatch, Resolver404
-from django.utils.copycompat import deepcopy
 from tastypie import _get_canonical_resource_name
 from tastypie.exceptions import NotFound, URLReverseError, MultipleRepresentationsFound
 from tastypie.fields import *
 from tastypie.representations.simple import Representation, RepresentationSet
+
+# copy was added in Python 2.5 and copycompat was added in
+# post 1.1.1 Django (r11901)
+try:
+    from django.utils.copycompat import deepcopy
+except ImportError:
+    from copy import deepcopy
 
 
 def api_field_from_django_field(f, default=CharField):
