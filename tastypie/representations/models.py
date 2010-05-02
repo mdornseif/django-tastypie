@@ -221,7 +221,7 @@ class ModelRepresentation(Representation):
     def get_resource_uri(self):
         kwargs = {
             'resource_name': self.resource_name,
-            'obj_id': self.instance.id
+            'obj_id': self.instance.pk
         }
         
         if self.api_name is not None:
